@@ -1,0 +1,39 @@
+GET http://localhost:3000/product
+
+###
+
+POST http://localhost:3000/product HTTP/1.1
+content-type: application/json
+
+{
+	"nome": "Cerveja IPA",
+	"preco": "12.99",
+	"descricao": "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
+	"id": 1
+}
+
+###
+
+PUT http://localhost:3000/product/12
+
+{
+	"nome": "Cerveja IPA",
+	"preco": "12.99",
+	"descricao": "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
+	"id": 1
+}
+
+###
+
+PATCH http://localhost:3000/product/12
+
+{
+	"nome": "Cerveja IPA",
+	"preco": "12.99",
+	"descricao": "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
+	"id": 1
+}
+
+###
+
+DELETE http://localhost:3000/product/13

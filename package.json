@@ -1,0 +1,14 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch app.js"
+  },
+  "author": "Raylan Cordeiro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

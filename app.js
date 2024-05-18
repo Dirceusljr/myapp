@@ -5,31 +5,22 @@ const port = 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-  res.json({
-    version: "1.0.0"
-  })
-})
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'database',
+  user     : 'myapp',
+  password : 'myapp',
+  database: 'myapp'
+});
 
-app.get('/product', (req, res, next) => {
-  res.status(200)
+app.get('/product', (req, res, next) => { 
+  connection.query('SELECT * FROM produtos', function(err, rows, fields) {
+  if (err) throw err;
   res.json({
     status: 200,
-    data: [
-      {
-        nome: "Cerveja IPA",
-        preco: "12.99",
-        descricao: "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
-        id: 1
-      },
-      {
-        nome: "Vinho Tinto Merlot",
-        preco: "20",
-        descricao: "Um vinho encorpado com notas de frutas escuras e taninos suaves.",
-        id: 2
-      }
-    ]
+    data: rows,
   })
+});
 })
 
 app.get('/product/:id', (req, res, next) => {
@@ -70,7 +61,7 @@ app.delete('/product/:id', (req, res, next) => {
 })
 
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0',() => {
   console.log(`Example app listening on port ${port}`)
 })
 

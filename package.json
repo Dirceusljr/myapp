@@ -2,13 +2,16 @@
   "name": "myapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "node --watch app.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --legacy-watch --watch"
   },
-  "author": "Raylan Cordeiro",
+  "author": "Raylan Cordeiro <raylancordeiro@hotmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.0"
   }
 }

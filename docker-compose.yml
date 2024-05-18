@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend-dc
+    image: node:latest
+    ports:
+      - "3000:3000"
+    volumes:
+    - ./:/app/
+    working_dir: /app
+    command: sh -c "npm run dev"
+    depends_on: 
+      - database
+
+  database:
+    container_name: database
+    image: mariadb:latest
+    ports:
+      - "3306:3306"
+    volumes:
+    - .data/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myapp
+      MYSQL_PASSWORD: myapp

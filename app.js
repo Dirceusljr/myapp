@@ -13,6 +13,8 @@ var connection = mysql.createConnection({
   database: 'myapp'
 });
 
+
+
 app.get('/product', (req, res, next) => { 
   connection.query('SELECT * FROM produtos', function(err, rows, fields) {
   if (err) throw err;
@@ -69,6 +71,14 @@ app.delete('/product/:id', (req, res, next) => {
         message: "Produto deletado com sucesso"
       }
   })
+})
+
+app.use((err, res, next) => {
+  if (err && res.status(404)) {
+    console.error('Erro de requisitação!')
+    return res.status(404).send('Página não encontrada!')
+  }
+  next()
 })
 
 

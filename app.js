@@ -36,10 +36,21 @@ app.get('/product/:id', (req, res, next) => {
   })
 })
 
-app.post('/product', (request, res) => {
-  res.status(200).json({
-    status: 200,
-    data: request.body
+//Método POST by Dirceu
+
+app.post('/product', (req, res) => {
+  const { nome, preco, descricao, imagem_url } = req.body
+  //Validação
+  if(!nome || !preco || !descricao || !imagem_url ) {
+    return res.status(400).json({error: 'Nome, preço, descrição e url da imagem são obrigatórios!'});
+  }
+  const queryPost = 'INSERT INTO produtos (nome, preco, descricao, imagem_url) VALUES (?, ?, ?, ?)';
+  connection.query(queryPost, [nome, preco, descricao, imagem_url], function (error, results) {
+    if(error) {
+      console.error('Erro ao inserir os dados no banco de dados: ', error)
+      return res.status(500).json({error: 'Erro ao inserir os dados no banco de dados.'})
+    }
+    res.status(201).json({message: 'Dados inseridos com sucesso', id: results.id})
   })
 })
 

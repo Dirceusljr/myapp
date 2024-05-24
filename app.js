@@ -54,13 +54,6 @@ app.post('/product', (req, res) => {
   })
 })
 
-app.put('/product/:id', (request, res) => {
-  res.status(201).json({
-    status: 201,
-    data: request.body
-})
-})
-
 app.delete('/product/:id', (req, res, next) => {
   res.status(200)
   res.json({
@@ -68,6 +61,27 @@ app.delete('/product/:id', (req, res, next) => {
     data: {
         message: "Produto deletado com sucesso"
       }
+  })
+})
+
+
+//Método PUT by André
+
+app.put('/product/:id', (req, res) => {
+
+  const id = req.params.id
+
+  const { nome, descricao, imagem_url, preco } = req.body
+
+  const queryPut = `UPDATE produtos SET nome = "${nome}", preco = "${preco}", descricao = "${descricao}", imagem_url = "${imagem_url}" WHERE id = ${id};`;
+  connection.query(queryPut, function (error, results) {
+    if(error) {
+      console.error('Erro ao editar os dados no banco de dados: ', error)
+      return res.status(500).json({error: 'Erro ao editar os dados no banco de dados.'})
+    }
+
+    console.log(results)
+    res.status(200).json({message: 'Dados editados com sucesso', id: results})
   })
 })
 

@@ -27,15 +27,15 @@ app.get('/product', (req, res, next) => {
 
 app.get('/product/:id', (req, res, next) => {
   res.status(200)
-  res.json({
-    status: 200,
-    data: {
-        nome: "Cerveja IPA",
-        preco: "12.99",
-        descricao: "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
-        id: 1
-      }
-  })
+  const query = `SELECT * FROM produtos WHERE id = ?`;
+  connection.query(query, [req.params.id], function(error, results){
+    if(error) {
+      console.error('Erro ao buscar os dados no banco de dados: ', error)
+      return res.status(404).json({error: 'Erro ao buscar os dados no banco de dados.'});
+    }
+    res.status(200).json(results)
+  });
+  
 })
 
 //Método POST by Dirceu

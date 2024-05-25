@@ -64,17 +64,6 @@ app.delete('/product/:id', (req, res, next) => {
   })
 })
 
-app.use((err, res, next) => {
-  if (err && res.status(404)) {
-    console.error('Erro de requisitação!')
-    return res.status(404).send('Página não encontrada!')
-  }
-  next()
-})
-
-
-//Método PUT by André
-
 app.put('/product/:id', (req, res) => {
 
   const id = req.params.id
@@ -93,6 +82,13 @@ app.put('/product/:id', (req, res) => {
   })
 })
 
+app.use((err, res, next) => {
+  if (err && res.status(404)) {
+    console.error('Erro de requisitação!')
+    return res.status(404).send('Página não encontrada!')
+  }
+  next()
+})
 
 app.listen(port, '0.0.0.0',() => {
   console.log(`Example app listening on port ${port}`)

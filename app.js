@@ -34,15 +34,6 @@ app.get('/product/:id', (req, res, next) => {
     res.status(200).json(results)
   });
   
-  // res.json({
-  //   status: 200,
-  //   data: {
-  //       nome: "Cerveja IPA",
-  //       preco: "12.99",
-  //       descricao: "Uma cerveja encorpada e amarga, com notas cítricas e frutadas.",
-  //       id: 1
-  //     }
-  // }) 
 })
 
 //Método POST by Dirceu

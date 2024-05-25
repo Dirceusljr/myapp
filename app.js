@@ -57,12 +57,10 @@ app.post('/product', (req, res) => {
 })
 
 app.delete('/product/:id', (req, res, next) => {
-  res.status(200)
-  res.json({
-    status: 200,
-    data: {
-        message: "Produto deletado com sucesso"
-      }
+  const id = req.params.id
+  const queryDelete = `DELETE FROM produtos WHERE id = ${id}`;
+  connection.query(queryDelete, function () {
+    return res.status(200).json({message: 'Produto deletado com sucesso'})
   })
 })
 

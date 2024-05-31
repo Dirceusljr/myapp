@@ -69,7 +69,7 @@ registerRoutes.put('/:id', (req, res) => {
         }
 
         console.log(results)
-        res.status(200).json({ message: 'Dados editados com sucesso', id: results })
+        res.status(200).json({ message: 'Dados editados com sucesso'})
     })
 })
 

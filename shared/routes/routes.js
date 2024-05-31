@@ -29,11 +29,8 @@ registerRoutes.get('/:id', (req, res, next) => {
 
 })
 
-//Método POST by Dirceu
-
 registerRoutes.post('/', (req, res) => {
     const { nome, preco, descricao, imagem_url } = req.body
-    //Validação
     if (!nome || !preco || !descricao || !imagem_url) {
         return res.status(400).json({ error: 'Nome, preço, descrição e url da imagem são obrigatórios!' });
     }
@@ -69,7 +66,7 @@ registerRoutes.put('/:id', (req, res) => {
         }
 
         console.log(results)
-        res.status(200).json({ message: 'Dados editados com sucesso'})
+        res.status(200).json({ message: 'Dados editados com sucesso' })
     })
 })
 

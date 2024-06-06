@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { db } from "../db/index.js";
 
-
 const registerRoutes = Router();
-
 
 registerRoutes.get('/', (req, res) => {
     const queryGET = 'SELECT * FROM produtos'
@@ -16,7 +14,7 @@ registerRoutes.get('/', (req, res) => {
     });
 })
 
-registerRoutes.get('/:id', (req, res, next) => {
+registerRoutes.get('/:id', (req, res) => {
     res.status(200)
     const query = `SELECT * FROM produtos WHERE id = ?`;
     db.query(query, [req.params.id], function (error, results) {

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { router } from './shared/routes/index.js';
 import { error } from './shared/routes/error.js';
@@ -9,10 +10,10 @@ const port = 3000
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(router)
-app.use(error)
+app.use(router, error)
 
-app.listen(port, '0.0.0.0',() => {
+
+app.listen(port,() => {
   console.log(`Example app listening on port ${port}`)
 })
 
